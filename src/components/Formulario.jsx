@@ -16,7 +16,7 @@ const Formulario = () => {
     const [error, setError] = React.useState(null)
 
 
-    const url = 'https://picsum.photos/id/237/200/300?random=1'
+    const url = 'https://picsum.photos/id/237/200/300'
     React.useEffect( () => {
         fetch(url)
         .then(Response => Response.json())
@@ -219,7 +219,7 @@ const Formulario = () => {
                             listaDeportes.map(item => (
                                 <li className='list-group-item' key={item.id}>
                                     <span className='lead'>
-                                        <img className='imagenAleatoria' src={imagenPicsum} alt = "imagenRandom"/>
+                                        <img className='imagenAleatoria' src= 'https://picsum.photos/id/237/200/300?random=1' alt = "imagenRandom"/><br/>
                                         Nombre: {item.nombreNombre}<br/>
                                     Apellido: {item.nombreApellido}<br/>
                                     Edad: {item.nombreEdad}<br/>
