@@ -9,7 +9,7 @@ const Formulario = () => {
     const [ciudad, setCiudad] = React.useState('')
     const [deporte, setDeporte] = React.useState('')
 
-    const [listaFrutas, setListaFrutas] = React.useState([])
+    const [listaDeportes, setListaDeportes] = React.useState([])
     const [id, setId] = React.useState('')
     const [modoEdicion, SetModoEdicion] = React.useState(false)
     const [error, setError] = React.useState(null)
@@ -19,15 +19,15 @@ const Formulario = () => {
         const obtenerDatos = async() => {
             try{
                 const db = firebase.firestore()
-                const data = await db.collection('frutas').get()
-                const arrayData = data.docs.map(doc => (
+                const data = await db.collection('agenda').get()
+                const arrayData = data.docs.map(item => (
                     {
-                    id: doc.id, ...doc.data()
+                    id: item.id, ...item.data()
                     }
                 ))
                 //console.log(arrayData)
 
-                setListaFrutas(arrayData)
+                setListaDeportes(arrayData)
 
             }catch(error){
                 console.log(error)
@@ -36,7 +36,7 @@ const Formulario = () => {
         obtenerDatos()
     })
 
-    const guardarFrutas = async (e) => {
+    const guardarDeportes = async (e) => {
         e.preventDefault()
 
         if (!nombre.trim()) {
@@ -78,8 +78,8 @@ const Formulario = () => {
             await db.collection('agenda').add(nuevaFruta)
     
             
-            setListaFrutas([
-                ...listaFrutas,
+            setListaDeportes([
+                ...listaDeportes,
                 { id: nanoid(), nombreNombre: nombre, nombreApellido: apellido, nombreCiudad: ciudad, 
                     nombreEdad: edad, nombreDeporte: deporte
                  }
@@ -109,7 +109,7 @@ const Formulario = () => {
         SetModoEdicion(true)
         setId(item.id);
     }
-    const editarFrutas =  async e => {
+    const editarDeportes =  async e => {
         e.preventDefault()
 
         if (!nombre.trim()) {
@@ -146,12 +146,12 @@ const Formulario = () => {
             nombreDeporte: deporte
             })
 
-            const arrayEditado = listaFrutas.map(
+            const arrayEditado = listaDeportes.map(
                 item => item.id === id ? { id: id, nombreNombre: nombre, nombreApellido: apellido, nombreCiudad: ciudad, 
                     nombreEdad: edad, nombreDeporte: deporte } : item
     
             )
-            setListaFrutas(arrayEditado)
+            setListaDeportes(arrayEditado)
             setNombre('')
             setApellido('')
             setEdad('')
@@ -171,9 +171,9 @@ const Formulario = () => {
     const eliminar = async id => {
         try {
             const db = firebase.firestore()
-            await db.collection('frutas').doc(id).delete()
-            const aux = listaFrutas.filter(item =>item.id !== id)
-            setListaFrutas(aux)
+            await db.collection('agenda').doc(id).delete()
+            const aux = listaDeportes.filter(item =>item.id !== id)
+            setListaDeportes(aux)
         } catch (error) {
             console.log(error)
             
@@ -203,9 +203,13 @@ const Formulario = () => {
                     <ul className='list-group'>
 
                         {
-                            listaFrutas.map(item => (
+                            listaDeportes.map(item => (
                                 <li className='list-group-item' key={item.id}>
-                                    <span className='lead'>{item.nombreNombre}-{item.nombreApellido}-{item.nombreEdad}-{item.nombreCiudad}-{item.nombreDeporte}</span>
+                                    <span className='lead'>{item.nombreNombre}-
+                                    {item.nombreApellido}-
+                                    {item.nombreEdad}-
+                                    {item.nombreCiudad}-
+                                    {item.nombreDeporte}</span>
                                     <button className='btn btn-danger btn-sm float-end mx-2' onClick={() => eliminar(item.id)}>
                                         Eliminar
                                     </button>
@@ -222,10 +226,10 @@ const Formulario = () => {
                 <div className='col-4'>
                     <h4 className='text-center'>
                         {
-                            modoEdicion ? 'Editar Frutas' : 'Agregar deportistas'
+                            modoEdicion ? 'Editar deportistas' : 'Agregar deportistas'
                         }
                     </h4>
-                    <form onSubmit={modoEdicion ? editarFrutas : guardarFrutas}>
+                    <form onSubmit={modoEdicion ? editarDeportes : guardarDeportes}>
                         {
                             error ? <span className='text-danger'>{error}</span> : null
                         }
