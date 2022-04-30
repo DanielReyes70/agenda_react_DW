@@ -2,18 +2,17 @@
 import firebase from "firebase/app";
 import 'firebase/firestore'
 
-
-
 const firebaseConfig = {
-  apiKey: "AIzaSyAin4rxM6rBf7gZHTooOWJSKMMlTCZ-LDo",
-  authDomain: "crub-basico-react-6324d.firebaseapp.com",
-  projectId: "crub-basico-react-6324d",
-  storageBucket: "crub-basico-react-6324d.appspot.com",
-  messagingSenderId: "112474428960",
-  appId: "1:112474428960:web:d00ac6e704af98da870e45"
+  apiKey: "AIzaSyDOIPyLWxbWedyzaceUKwjtAa49x9U1mOI",
+  authDomain: "agenda-react-dw.firebaseapp.com",
+  projectId: "agenda-react-dw",
+  storageBucket: "agenda-react-dw.appspot.com",
+  messagingSenderId: "901398724964",
+  appId: "1:901398724964:web:02de7eda6467acebdaba71"
 };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
 
 export{firebase}

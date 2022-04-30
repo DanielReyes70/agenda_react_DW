@@ -15,14 +15,16 @@ const Formulario = () => {
     const [error, setError] = React.useState(null)
 
 
+    
+
     React.useEffect(()=>{
         const obtenerDatos = async() => {
             try{
                 const db = firebase.firestore()
                 const data = await db.collection('agenda').get()
-                const arrayData = data.docs.map(item => (
+                const arrayData = data.docs.map(doc => (
                     {
-                    id: item.id, ...item.data()
+                    id: doc.id, ...doc.data()
                     }
                 ))
                 //console.log(arrayData)
@@ -67,7 +69,7 @@ const Formulario = () => {
        
         try {
             const db = firebase.firestore()
-            const nuevaFruta = {
+            const nuevoDeportista = {
                 nombreNombre: nombre,
                 nombreApellido: apellido,
                 nombreEdad: edad,
@@ -75,7 +77,7 @@ const Formulario = () => {
                 nombreDeporte: deporte
             }
     
-            await db.collection('agenda').add(nuevaFruta)
+            await db.collection('agenda').add(nuevoDeportista)
     
             
             setListaDeportes([
