@@ -8,7 +8,7 @@ const Formulario = () => {
     const [edad, setEdad] = React.useState('')
     const [ciudad, setCiudad] = React.useState('')
     const [deporte, setDeporte] = React.useState('')
-    const [imagenPicsum, setImagenPicsum] = React.useState(null)
+    
 
     const [listaDeportes, setListaDeportes] = React.useState([])
     const [id, setId] = React.useState('')
@@ -16,14 +16,7 @@ const Formulario = () => {
     const [error, setError] = React.useState(null)
 
 
-    const url = 'https://picsum.photos/id/237/200/300'
-    React.useEffect( () => {
-        fetch(url)
-        .then(Response => Response.json())
-        .then(data => {
-            setImagenPicsum(data.id)
-        })
-    },[])
+   
 
 
     
