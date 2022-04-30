@@ -8,11 +8,22 @@ const Formulario = () => {
     const [edad, setEdad] = React.useState('')
     const [ciudad, setCiudad] = React.useState('')
     const [deporte, setDeporte] = React.useState('')
+    const [imagenPicsum, setImagenPicsum] = React.useState(null)
 
     const [listaDeportes, setListaDeportes] = React.useState([])
     const [id, setId] = React.useState('')
     const [modoEdicion, SetModoEdicion] = React.useState(false)
     const [error, setError] = React.useState(null)
+
+
+    const url = 'https://picsum.photos/id/237/200/300?random=1'
+    React.useEffect( () => {
+        fetch(url)
+        .then(Response => Response.json())
+        .then(data => {
+            setImagenPicsum(data.id)
+        })
+    }
 
 
     
@@ -207,11 +218,14 @@ const Formulario = () => {
                         {
                             listaDeportes.map(item => (
                                 <li className='list-group-item' key={item.id}>
-                                    <span className='lead'>{item.nombreNombre}-
-                                    {item.nombreApellido}-
-                                    {item.nombreEdad}-
-                                    {item.nombreCiudad}-
-                                    {item.nombreDeporte}</span>
+                                    <span className='lead'>
+                                        <img className='imagenAleatoria' src={imagenPicsum} alt = "imagenRandom"/>
+                                        Nombre: {item.nombreNombre}<br/>
+                                    Apellido: {item.nombreApellido}<br/>
+                                    Edad: {item.nombreEdad}<br/>
+                                    Ciudad: {item.nombreCiudad}<br/>
+                                    Deporte: {item.nombreDeporte}<br/>
+                                    </span>
                                     <button className='btn btn-danger btn-sm float-end mx-2' onClick={() => eliminar(item.id)}>
                                         Eliminar
                                     </button>
