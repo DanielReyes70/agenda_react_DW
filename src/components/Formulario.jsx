@@ -212,7 +212,7 @@ const Formulario = () => {
                             listaDeportes.map(item => (
                                 <li className='list-group-item' key={item.id}>
                                     <span className='lead'>
-                                        <img className='imagenAleatoria' src= 'https://picsum.photos/id/237/200/300?random=1' alt = "imagenRandom"/><br/>
+                                        <img className='imagenAleatoria' src= 'https://picsum.photos/seed/237/200/300?random=1' alt = "imagenRandom"/><br/>
                                         Nombre: {item.nombreNombre}<br/>
                                     Apellido: {item.nombreApellido}<br/>
                                     Edad: {item.nombreEdad}<br/>
