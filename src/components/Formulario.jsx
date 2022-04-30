@@ -23,7 +23,7 @@ const Formulario = () => {
         .then(data => {
             setImagenPicsum(data.id)
         })
-    }
+    },[])
 
 
     
@@ -113,7 +113,7 @@ const Formulario = () => {
        
     }
 
-    const =  editar = item => {
+    const editar = item => {
         setNombre(item.nombreNombre)
         setApellido(item.nombreApellido)
         setEdad(item.nombreEdad)
